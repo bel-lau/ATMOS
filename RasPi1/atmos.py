@@ -13,9 +13,6 @@ def func1():
         subprocess.call("./raspberrypi_capture")
         
 def func2():
-        GPIO.setmode(GPIO.BCM)
-        arduino = 4
-        GPIO.setup(arduino,GPIO.IN)
         camera = picamera.PiCamera()
         
         # Capture video
@@ -31,6 +28,16 @@ def func2():
                 time.sleep(10) #time between pictures
                 
 def main():
+        GPIO.setmode(GPIO.BCM)
+        arduino = 4
+        GPIO.setup(arduino,GPIO.IN)
+        
+        start = 0
+        while start == 0:
+                start = GPIO.input(arduino)
+                if start = 1:
+                        break
+        
         Thread(target = func1).start()
         Thread(target = func2).start()
         
