@@ -7,6 +7,12 @@ GPIO.setmode(GPIO.BCM)
 arduino = 4
 GPIO.setup(arduino,GPIO.IN)
 camera = picamera.PiCamera()
+
+start = 0
+while start == 0:
+        start = GPIO.input(arduino)
+        if start == 1:
+                break
         
 # Capture video
 camera.resolution = (640,480)
